@@ -1,0 +1,22 @@
+.container-for-all{
+    background-image: url("/public/background_wallpaper.jpg");
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.box {
+    background-color: white;
+    position: absolute;
+    margin-left: 37.5%;
+    margin-right: 37.5%;
+    display: flex;
+    width: 25vw;
+    height: 60vh;
+    text-align: center;
+
+}
+
