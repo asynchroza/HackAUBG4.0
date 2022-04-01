@@ -1,8 +1,10 @@
+import { Button } from 'react-bootstrap';
+
 
 function App() {
   return (
-    <h1>Working</h1>
-  );
+    <Button onClick={()=>{console.log(localStorage.getItem("user"))}}></Button>
+    );
 }
 
 export default App;
