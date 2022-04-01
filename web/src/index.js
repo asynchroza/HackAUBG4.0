@@ -6,11 +6,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 try{
   localStorage.getItem("user");
 } catch {
-  //function to generate GUID
+  //function to generate TOKEN
   //check if GUID is already existing
-  localStorage.setItem("user", "Misho");
+  localStorage.setItem("user", "TOKEN");
 }
-localStorage.setItem("user","Misho");
 
 ReactDOM.render(
   <React.StrictMode>
