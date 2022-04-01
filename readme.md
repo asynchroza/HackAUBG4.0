@@ -5,4 +5,8 @@
 <li>Python</li>
 <li>FastAPI</li>
 </ul>
+<hr/>
+<h3>Important!</h3>
+<p>The package manager is NPM </p>
+
 
