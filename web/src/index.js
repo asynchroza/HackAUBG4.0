@@ -3,12 +3,14 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-try{
-  localStorage.getItem("user");
-} catch {
-  //function to generate TOKEN
-  //check if GUID is already existing
-  localStorage.setItem("user", "TOKEN");
+const generateToken = () => {
+  let charArr = [];
+  return [(Math.random()*charArr.length)];
+}
+
+if(localStorage.getItem("user") == null){
+
+  localStorage.setItem("user", generateToken());
 }
 
 ReactDOM.render(
