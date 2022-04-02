@@ -1,0 +1,6 @@
+pymongo
+bs4
+fastapi
+uvicorn
+pandas
+requests

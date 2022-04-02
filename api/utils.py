@@ -1,11 +1,7 @@
 import requests
 import random
-import config
 from bs4 import BeautifulSoup
-from pymongo import MongoClient
-
-mc = MongoClient(config.MONGO_URI)
-db = mc['mock-interviews']
+import db
 
 headers = {
     'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:55.0) Gecko/20100101 Firefox/55.0'
@@ -35,7 +31,7 @@ def parseRole(page):
 
 # Get questions from the db by tag
 def get_questions_by_tag(tag):
-    all_questions = db['questions'].find({})
+    all_questions = db.find_questions()
     questions_by_tag = []
     for document in all_questions:
         if tag in document['tags']:
@@ -48,13 +44,13 @@ def get_random_sample(questions, number):
     question_sample = []
     indexes = random.sample(range(1, len(questions)), number)
     for index in indexes:
-        question_sample.append(questions[index]['question'])
+        question_sample.append(questions[index])
 
     return question_sample
 
 # Get core tag for the role
 def get_core_tag(role):
-    all_tags = db['tags'].find({})
+    all_tags = db.find_tags()
     tag_names = []
     for tag in all_tags:
         if tag['tag'] not in tag_names:
