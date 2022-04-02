@@ -5,6 +5,7 @@ const styles = {
         border: 'none',
         borderRadius: "25rem"
     }
+    
 };
 
 export default styles;

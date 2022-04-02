@@ -13,7 +13,10 @@ const WelcomeBanner = () => {
           </Button>
         </div>
       </div>
-      <div className="following-banner-box"></div>
+      <div className="following-banner-box">
+        <div className="following-banner-footer">
+        </div>
+      </div>
     </div>
   );
 };

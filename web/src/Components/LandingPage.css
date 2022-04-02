@@ -9,6 +9,7 @@
 
 .justify-content-center{
     background-color: #557B83;
+    text-align: center;
 }
 
 .linkedin-text-h1{
@@ -18,7 +19,7 @@
 .link-or-choose{
     background-color: white;
     width: 50vw;
-    height: 60vh;
+    height: 50vh;
     margin-left: 25%;
     margin-top: 5%;
     border-radius: 25%;
@@ -28,6 +29,10 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.btn-generate{
+    margin-top: 1.5rem;
 }
 
 @media only screen and (max-width: 1500){
@@ -51,6 +56,11 @@
     .linkedin-text-h1{
         font-size: medium;
     }
+}
+
+.remove-padding-brand{
+    padding-right: 0 !important;
+    margin-right: 0 !important;
 }
 
 .banner-box{
@@ -110,8 +120,6 @@
 }
 
 .following-banner-box{
-    border-top-left-radius: 75%;
-    border-top-right-radius: 75%;
     height: 70vh;
     background-color: #39AEA9;
 }
@@ -125,4 +133,8 @@
 .dev-task-img{
     width: auto;
     height: auto;
+}
+
+.group-form-number-qs{
+    margin-top: 1rem;
 }
