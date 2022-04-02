@@ -19,7 +19,7 @@ const generateToken = () => {
 if (localStorage.getItem("user") == null) {
   localStorage.setItem("user", generateToken());
   axios
-    .post(`http://127.0.0.1:6969/login/`, localStorage.getItem("user"))
+    .post(`http://127.0.0.1:6969/login/${localStorage.getItem("user")}`)
     .then((response) => {
       console.log(response.status);
     })
