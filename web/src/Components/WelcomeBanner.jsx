@@ -9,7 +9,7 @@ const WelcomeBanner = () => {
       <div className="banner-box">
         <div className="white-box-welcome">
           <Button style={styles.customButton} className="proceed-button" href="/typeofmock">
-            Proceed
+            Get Started
           </Button>
         </div>
       </div>

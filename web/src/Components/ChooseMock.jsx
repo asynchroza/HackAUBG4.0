@@ -30,8 +30,8 @@ const ChooseMock = () => {
             </Form>
           </div>
         </div>
-        <Button style={styles.customButton} className="btn-generate">
-          Generate
+        <Button style={styles.customButton} className="btn-generate" href="/mockinterview">
+          Generate Mokk
         </Button>
       </div>
     </div>
