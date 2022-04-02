@@ -3,8 +3,7 @@ import { Nav, Navbar, Container } from "react-bootstrap";
 
 const Navigation = () => {
   return (
-    <Navbar variant="dark" className="navbar-alloc">
-      <Container>
+    <Navbar variant="dark" className="justify-content-center">
         <Navbar.Brand href="#home">
           {/* <img
             alt=""
@@ -15,7 +14,6 @@ const Navigation = () => {
           />{" "} */}
           MOKKAI
         </Navbar.Brand>
-      </Container>
     </Navbar>
   );
 };
