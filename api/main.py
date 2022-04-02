@@ -1,5 +1,6 @@
 from fastapi import FastAPI, Response, status
 from fastapi.responses import JSONResponse
+from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 import config
 from utils import *
@@ -13,10 +14,24 @@ REST_QS_PROP = 0.2
 PORT = config.PORT
 HOST = config.HOST
 
+origins = [
+    "http://localhost",
+    "http://localhost:3000",
+]
+
 app = FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 
 def parse_json(data):
     return json.loads(json_util.dumps(data))
+
 
 @app.get('/get-interview/')
 async def get_interview_set(int_req: InterviewRequest):
