@@ -21,7 +21,11 @@ def find_questions():
     return db['questions'].find({}, {'_id': 0})
 
 
-def get_interview(uuid):
+def get_interview_user_token(user_token):
+    return db['interviews'].find_one({"u_token": user_token}, {'_id': 0})
+
+
+def get_interview_uuid(uuid):
     return db['interviews'].find_one({"uuid": uuid}, {'_id': 0})
 
 
@@ -31,5 +35,3 @@ def update_interview(uuid, intv):
 
 def add_interview(interview):
     return db['interviews'].insert_one(interview)
-
-# def evalue()

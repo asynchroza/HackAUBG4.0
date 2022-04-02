@@ -50,9 +50,15 @@ async def get_score(ans_req: AnswerRequest):
     return JSONResponse(status_code=status.HTTP_200_OK, content=dict(ans_req))
 
 
+@app.get('/get-interview/{user_token}')
+async def get_interview_user_token(user_token):
+    interview = db.get_interview_user_token(user_token)
+    return JSONResponse(status_code=status.HTTP_200_OK, content=interview)
+
+
 @app.get('/get-interview/{uuid}')
 async def get_interview_uuid(uuid):
-    interview = db.get_interview(uuid)
+    interview = db.get_interview_uuid(uuid)
     return JSONResponse(status_code=status.HTTP_200_OK, content=interview)
 
 
