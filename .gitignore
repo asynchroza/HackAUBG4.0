@@ -1,6 +1,6 @@
 .idea
 api/__pycache__
 env/
-apnews_dbow.*
+enwiki_dbow
 apnews_dbow
 

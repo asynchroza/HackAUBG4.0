@@ -5,8 +5,11 @@ import uvicorn
 import config
 from utils import *
 from models import *
-import json
-from bson import json_util
+from datetime import datetime
+from gensim.models.doc2vec import Doc2Vec
+from scipy import spatial
+import uuid
+from math import floor
 
 CORE_QS_PROP = 0.8
 REST_QS_PROP = 0.2
@@ -19,6 +22,9 @@ origins = [
     "http://localhost:3000",
 ]
 
+
+model = Doc2Vec.load('./enwiki_dbow/doc2vec.bin')
+
 app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
@@ -29,11 +35,21 @@ app.add_middleware(
 )
 
 
-def parse_json(data):
-    return json.loads(json_util.dumps(data))
+@app.get('/get-score/')
+async def get_score(ans_req: AnswerRequest):
+    # answers = ans_req.interview_set
+    d_answers = db.get_interview(ans_req.uuid)['interview_set']
+    for i, q in enumerate(ans_req.interview_set):
+        vu = model.infer_vector(q['answer'].split())
+        vq = model.infer_vector(d_answers[i]['answer'].split())
+        score = floor((1 - spatial.distance.cosine(vq, vu))*100)
+        q['score'] = score
+    ans_req.end = datetime.now().strftime("%m/%d/%Y, %H:%M:%S")
+    db.update_interview(ans_req.uuid, dict(ans_req))
+    return JSONResponse(status_code=status.HTTP_200_OK, content=dict(ans_req))
 
 
-@app.get('/get-interview/')
+@ app.get('/get-interview/')
 async def get_interview_set(int_req: InterviewRequest):
     i_url = int_req.str
     n_q = int_req.number
@@ -52,18 +68,24 @@ async def get_interview_set(int_req: InterviewRequest):
     for tag in tags:
         rest_sample = get_random_sample(get_questions_by_tag(tag), rest_qs)
         for question in rest_sample:
+            question["score"] = 0
             interview_set.append(question)
 
     core_sample = get_random_sample(get_questions_by_tag(core_tag), core_qs)
     for question in core_sample:
+        question["score"] = 0
         interview_set.append(question)
+    now = datetime.now()
+    interview = {'interview_set': interview_set, 'start': now.strftime(
+        "%m/%d/%Y, %H:%M:%S"), 'end': now.strftime("%m/%d/%Y, %H:%M:%S"), 'u_token': int_req.user_token, 'uuid': str(uuid.uuid1())}
 
-    db.add_interview(interview_set, int_req.user_token)
+    db.add_interview(interview)
+    interview['_id'] = 0
 
-    return JSONResponse(status_code=status.HTTP_200_OK, content=parse_json({"interview_set": interview_set}))
+    return JSONResponse(status_code=status.HTTP_200_OK, content=interview)
 
 
-@app.post('/login/{token}')
+@ app.post('/login/{token}')
 async def check_login(token):
     code = db.find_login(token)
     if code == 200:

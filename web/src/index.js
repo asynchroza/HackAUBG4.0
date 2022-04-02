@@ -20,7 +20,7 @@ if (localStorage.getItem("user") == null) {
   // if user does not exist, generate user and post to database
   localStorage.setItem("user", generateToken());
   axios
-    .post(`http://127.0.0.1:6969/login/${localStorage.getItem("user")}`)
+    .post(`http://127.0.0.1:6969/login/`, localStorage.getItem("user"))
     .then((response) => {
       console.log(response.status);
     })
