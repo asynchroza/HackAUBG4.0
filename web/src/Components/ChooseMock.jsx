@@ -10,18 +10,21 @@ const ChooseMock = () => {
       <div className="link-or-choose">
         <div className="link-paster">
           <div className="link-paster-row">
-            <h3 className="linkedin-text-h1">
-              Paste a link to a LinkedIn job or input the language
-            </h3>
             <Form>
               <Form.Group>
+                <Form.Label>
+                  Paste a link to a LinkedIn job or input the language
+                </Form.Label>
                 <Form.Control
                   type="text"
                   placeholder="LinkedIn link, Programming language or the name of the job listing"
                 ></Form.Control>
                 <Form.Group className="group-form-number-qs">
                   <Form.Label>How many questions?</Form.Label>
-                  <Form.Control type="number" placeholder="We recommend at least 15"></Form.Control>
+                  <Form.Control
+                    type="number"
+                    placeholder="We recommend at least 15"
+                  ></Form.Control>
                 </Form.Group>
               </Form.Group>
             </Form>
