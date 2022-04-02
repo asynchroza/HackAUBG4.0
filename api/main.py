@@ -49,7 +49,13 @@ async def get_score(ans_req: AnswerRequest):
     return JSONResponse(status_code=status.HTTP_200_OK, content=dict(ans_req))
 
 
-@ app.get('/get-interview/')
+@app.get('/get-interview/{uuid}')
+async def get_interview_uuid(uuid):
+    interview = db.get_interview(uuid)
+    return JSONResponse(status_code=status.HTTP_200_OK, content=interview)
+
+
+@ app.post('/get-interview/')
 async def get_interview_set(int_req: InterviewRequest):
     i_url = int_req.str
     n_q = int_req.number
@@ -62,6 +68,8 @@ async def get_interview_set(int_req: InterviewRequest):
     else:
         role = i_url
     tags = ['database', 'general']
+
+    core_qs = n_q-len(tags*rest_qs)
     core_tag = get_core_tag(role)
     interview_set = []
 

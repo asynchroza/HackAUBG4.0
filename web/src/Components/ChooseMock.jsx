@@ -5,21 +5,43 @@ import Navigation from "./Navbar";
 import styles from "./Styles";
 const axios = require("axios").default;
 
-const ChooseMock = () => {
+const ChooseMock = (props) => {
   const getLocal = localStorage;
-  const [formState, setFormState] = useState({});
-  const onChange = (event) => {
+  const [formState, setFormState] = useState({
+    str: "",
+    number: 0,
+    user_token: ""
+  });
+  const handleChange = (event) => {
     const target = event.target;
-    const value = target.type;
+    const value = target.type == 'number' ? Number(target.value) : target.value;
     const name = target.name;
 
-    formState = {
-      //write some code here to create object to be passed
-    };
+    setFormState ({
+      ...formState,
+      [name]:value
+    });
+    console.log(formState)
   };
 
   const handleSubmit = (event) => {
-    axios.post(`http://127.0.0.1:6969/get-interview/`, formState);
+    event.preventDefault();
+    console.log({...formState,user_token: getLocal.getItem("user")})
+    axios({
+      method: "post",
+      url:`http://127.0.0.1:6969/get-interview/`, 
+      headers:{},
+      data:{...formState, user_token: getLocal.getItem("user")}
+    })
+    .then((res)=>{
+      window.location.href = '/mockinterview';
+      getLocal.setItem("uuid",res.data.uuid)
+      console.log(res)
+    })
+    .catch((err)=>{
+      console.log(err);
+      console.log(err.response.data)
+    });
   };
 
   return (
@@ -34,18 +56,18 @@ const ChooseMock = () => {
                   Paste a link to a LinkedIn job or input the language
                 </Form.Label>
                 <Form.Control
-                  name="link"
+                  name="str" // name for first input
                   type="text"
-                  onChange={onChange}
+                  onChange={handleChange}
                   placeholder="LinkedIn link, Programming language or the name of the job listing"
                 ></Form.Control>
                 <Form.Group className="group-form-number-qs">
                   <Form.Label>How many questions?</Form.Label>
                   <Form.Control
-                    name="number"
+                    name="number" // name for second input
                     type="number"
                     placeholder="We recommend at least 15"
-                    onChange={onChange}
+                    onChange={handleChange}
                   ></Form.Control>
                 </Form.Group>
               </Form.Group>
@@ -53,10 +75,12 @@ const ChooseMock = () => {
           </div>
         </div>
         <Button
+          
           style={styles.customButton}
           type="submit"
           className="btn-generate"
           href="/mockinterview"
+          onClick={handleSubmit}
         >
           Generate Mokk
         </Button>

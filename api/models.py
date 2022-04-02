@@ -5,9 +5,9 @@ from datetime import datetime
 
 
 class InterviewRequest(BaseModel):
+    number: int
     str: str
     user_token: str
-    number: int
 
 
 class AnswerRequest(BaseModel):
