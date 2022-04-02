@@ -3,6 +3,7 @@
 <ul>
 <li>React</li>
 <li>Python</li>
+<li>FastAPI</li>
 </ul>
 <hr/>
 <h3>Important</h3>

@@ -1,13 +1,13 @@
 import React from 'react';
 import Navigation from './Navbar';
 import './LandingPage.css';
-import LandingBox from './LandingBox';
+import WelcomeBanner from './WelcomeBanner';
 
 const LandingPage = () => {
     return (
         <div className='container-for-all'>
             <Navigation className="fixed-top"></Navigation>
-            <LandingBox></LandingBox>
+            <WelcomeBanner></WelcomeBanner>
         </div>
 
     )
