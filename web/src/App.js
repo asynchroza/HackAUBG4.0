@@ -1,9 +1,10 @@
 import { Button } from 'react-bootstrap';
+import LandingPage from './Components/LandingPage';
 
 
 function App() {
   return (
-    <Button onClick={()=>{console.log(localStorage.getItem("user"))}}></Button>
+    <LandingPage></LandingPage>
     );
 }
 
