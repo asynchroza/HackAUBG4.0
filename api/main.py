@@ -1,27 +1,22 @@
 from fastapi import FastAPI, Response, status
 from fastapi.responses import JSONResponse
 import uvicorn
-import db
+import config
 from utils import *
 from models import *
+import json
+from bson import json_util
 
 CORE_QS_PROP = 0.8
 REST_QS_PROP = 0.2
-
-mc = MongoClient(config.MONGO_URI)
-db = mc['mock-interviews']
-
 
 PORT = config.PORT
 HOST = config.HOST
 
 app = FastAPI()
 
-
-@app.get('/')
-async def root():
-    db.generate_db()
-    return {"message": "meow"}
+def parse_json(data):
+    return json.loads(json_util.dumps(data))
 
 @app.get('/get-interview/')
 async def get_interview_set(int_req: InterviewRequest):
@@ -48,7 +43,9 @@ async def get_interview_set(int_req: InterviewRequest):
     for question in core_sample:
         interview_set.append(question)
 
-    return JSONResponse(status_code=status.HTTP_200_OK, content={"interview_set": interview_set})
+    db.add_interview(interview_set, int_req.user_token)
+
+    return JSONResponse(status_code=status.HTTP_200_OK, content=parse_json({"interview_set": interview_set}))
 
 
 @app.post('/login/{token}')
