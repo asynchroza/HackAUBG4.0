@@ -1,5 +1,4 @@
 .container-for-all{
-    flex-direction: column;
     align-items: center;
     height: 100vh;
     overflow: hidden;
@@ -10,6 +9,48 @@
 
 .justify-content-center{
     background-color: #557B83;
+}
+
+.linkedin-text-h1{
+    font-size: x-large;
+}
+
+.link-or-choose{
+    background-color: white;
+    width: 50vw;
+    height: 60vh;
+    margin-left: 25%;
+    margin-top: 5%;
+    border-radius: 25%;
+    display: flex;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+@media only screen and (max-width: 1500){
+    .link-paster-row{
+        margin-left: 2rem;
+        margin-right: 2rem;
+    }
+}
+
+@media only screen and (max-width: 800px){
+    .link-or-choose{
+        width: 100vw;
+        height: 100vh;
+        padding-bottom: 5rem;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        margin: 0;
+        border-radius: 0;
+    }
+
+    .linkedin-text-h1{
+        font-size: medium;
+    }
 }
 
 .banner-box{
@@ -34,7 +75,7 @@
 
 .proceed-button{
     margin: 2.5rem;
-    max-width: 20rem; /* size of button */
+    max-width: 20rem; /* size of buttonc */
 }
 
 @media only screen and (max-width: 1400px){

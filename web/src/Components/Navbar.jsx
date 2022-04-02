@@ -4,7 +4,7 @@ import { Nav, Navbar, Container } from "react-bootstrap";
 const Navigation = () => {
   return (
     <Navbar variant="dark" className="justify-content-center">
-        <Navbar.Brand href="#home">
+        <Navbar.Brand href="/">
           {/* <img
             alt=""
             src="/logo.svg"
