@@ -13,7 +13,7 @@
 }
 
 .banner-box{
-    height: 55vh;
+    height: 60vh;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -23,14 +23,54 @@
 .white-box-welcome{
     background-color: white;
     margin-top: 10rem;
-    height: 70vh;
+    height: 80vh;
     width: 40%;
     border-radius: 25%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.proceed-button{
+    margin: 2.5rem;
+    max-width: 20rem; /* size of button */
+}
+
+@media only screen and (max-width: 1400px){
+    .white-box-welcome{
+        width: 50%;
+    }
+    @media only screen and (max-width: 1200px){
+        .white-box-welcome{
+            width: 55%;
+        }
+        @media only screen and (max-width: 1000px){
+            .white-box-welcome{
+                width: 60%;
+            }
+            @media only screen and (max-width: 800px){
+                .white-box-welcome{
+                    width: 65%;
+                }
+                @media only screen and (max-width: 600px) {
+                    .white-box-welcome{
+                        width: 75%;
+                    }
+                    @media only screen and (max-width: 500px){
+                        .white-box-welcome{
+                            width: 90%;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 .following-banner-box{
-    border-top-left-radius: 45%;
-    border-top-right-radius: 45%;
+    border-top-left-radius: 75%;
+    border-top-right-radius: 75%;
     height: 70vh;
     background-color: #39AEA9;
 }
