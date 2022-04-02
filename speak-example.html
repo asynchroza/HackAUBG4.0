@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content=
+        "width=device-width, initial-scale=1.0">
+  
+    <title>Speech to Text</title>
+</head>
+  
+<body>
+    <h2>Speech-to-Text</h2>
+    <div class="words" contenteditable>
+        <p id="p"></p>
+    </div>
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+    <br>
+    <h2>Text-To-Speech</h2>
+    <input style="width: 400px; height: 100px;" id="input"/>
+    <br>
+    <button id="pronounce">Pronounce</button>
+    <script>
+        // Speech to text
+    var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
+    var recognition = new SpeechRecognition();
+            
+    recognition.onstart = function() {
+        console.log("We are listening. Try speaking into the microphone.");
+    };
+              
+    recognition.onresult = function(event) {
+        var transcript = event.results[0][0].transcript;
+        var confidence = event.results[0][0].confidence;
+        document.getElementById('p').innerHTML = transcript;
+        console.log(transcript);
+        console.log(confidence);
+    };
+    document.getElementById('start').addEventListener('click', function() {
+        recognition.start();
+    })          
+    document.getElementById('stop').addEventListener('click', function() {
+        recognition.stop();
+    })
+
+        // Text to speech
+    function readOutLoud(message) {
+    var speech = new SpeechSynthesisUtterance();
+
+    // Set the text and voice attributes.
+    speech.text = message;
+    speech.volume = 1;
+    speech.rate = 0.7;
+    speech.pitch = 10;
+    window.speechSynthesis.speak(speech);
+    }
+
+    document.getElementById("pronounce").addEventListener("click", function() {
+        var inputText = document.getElementById("input").value;
+        readOutLoud(inputText);
+    })
+    </script>
+</body>
+  
+</html>
