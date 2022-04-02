@@ -25,7 +25,6 @@ const Questions = (props) => {
   }, []);
 
 
-  console.log(CQ)
 
   // questions arr to be changed with passed arr from back-end
 
@@ -53,11 +52,29 @@ const Questions = (props) => {
             style={styles.customButton}
             className="btn-generate"
             onClick={() => {
-              console.log(interview['interview_set'].length)
               if (CQ+2> interview['interview_set'].length && btnText == "Finish") {
-                  console.log(interview['interview_set'])
-                  setInterview({...interview, interview_set:answers});
-              }
+                  let q = interview['interview_set'][CQ];
+                  q['answer'] = answer;
+                  setAnswers([...answers, q])
+                  setInterview({...interview, interview_set:[...answers,q]});
+                  console.log({...interview, interview_set:[...answers,q]})
+                  axios({
+                    method: "post",
+                    url:`http://127.0.0.1:6969/get-score/`, 
+                    headers:{},
+                    data:{...interview, interview_set:[...answers,q]}
+                  })
+                  .then((res)=>{
+                    // window.location.href = '/mockinterview';
+                    // getLocal.setItem("uuid",res.data.uuid)
+                    console.log(res.data)
+                  })
+                  .catch((err)=>{
+                    console.log(err);
+                    console.log(err.response.data)
+                  })
+                }
+              
               else if (CQ+2== interview['interview_set'].length) {
                 let q = interview['interview_set'][CQ];
                 q['answer'] = answer;
@@ -67,6 +84,7 @@ const Questions = (props) => {
                 setBtnText("Finish");
               } else {
                 let q = interview['interview_set'][CQ];
+                q['answer'] = answer;
                 setAnswers([...answers, q]);
                 setAnswer("");
                 setCQ(CQ+1);

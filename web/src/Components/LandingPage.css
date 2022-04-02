@@ -6,6 +6,11 @@
     background-size: cover;
 }
 
+.rotate-logo{
+    margin-top: 2rem;
+    width: 50vw;
+}
+
 
 .justify-content-center{
     background-color: #557B83;

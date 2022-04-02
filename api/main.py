@@ -35,7 +35,7 @@ app.add_middleware(
 )
 
 
-@app.get('/get-score/')
+@app.post('/get-score/')
 async def get_score(ans_req: AnswerRequest):
     # answers = ans_req.interview_set
     d_answers = db.get_interview(ans_req.uuid)['interview_set']
@@ -43,6 +43,7 @@ async def get_score(ans_req: AnswerRequest):
         vu = model.infer_vector(q['answer'].split())
         vq = model.infer_vector(d_answers[i]['answer'].split())
         score = floor((1 - spatial.distance.cosine(vq, vu))*100)
+        score = 0 if score < 0 else score
         q['score'] = score
     ans_req.end = datetime.now().strftime("%m/%d/%Y, %H:%M:%S")
     db.update_interview(ans_req.uuid, dict(ans_req))
