@@ -1,7 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
 
-url = "https://www.linkedin.com/jobs/search/?geoId=105333783&keywords=junior%20.net%20developer&location=Bulgaria"
 headers = {
     'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:55.0) Gecko/20100101 Firefox/55.0'
 }
