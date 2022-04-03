@@ -10,7 +10,7 @@ const Graph = (props) => {
             <Navigation/>
             <div className='link-or-choose-graph'>
             
-            <Button style={styles.customButton}>View your answers</Button>
+            <Button style={styles.customButton} onClick={()=>{window.location.href = '/viewanswers';}}>View your answers</Button>
             </div>
         </div>
     )

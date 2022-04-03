@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import ChooseMock from './Components/ChooseMock';
 import Questions from './Components/Questions';
 import Graph from './Components/Graph';
+import AnswerView from './Components/AnswerView';
 
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
       <Route path="/typeofmock" element={<ChooseMock/>}/>
       <Route path="/mockinterview" element={<Questions/>}/>
       <Route path="/golemicici" element={<Graph/>}/>
+      <Route path="/viewanswers" element={<AnswerView/>}/>
     </Routes>
     );
 }

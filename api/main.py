@@ -44,6 +44,12 @@ async def get_interview_stats_user(user_token):
     return JSONResponse(status_code=status.HTTP_200_OK, content=response)
 
 
+@app.get('/get-user-answers/{uuid}')
+async def get_user_answers(uuid):
+    interview = db.get_user_answers_uuid(uuid)
+    return JSONResponse(status_code=status.HTTP_200_OK, content=interview)
+
+
 @app.post('/get-score/')
 async def get_score(ans_req: AnswerRequest):
     d_answers = db.get_interview_uuid(ans_req.uuid)['interview_set']

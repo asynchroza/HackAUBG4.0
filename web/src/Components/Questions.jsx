@@ -7,7 +7,7 @@ import Graph from './Graph';
 const axios = require("axios").default;
 
 
-const Questions = (props) => {
+const Questions = () => {
   const [CQ, setCQ] = useState(-1);
   const [btnText, setBtnText] = useState("Next");
   const [interview, setInterview] = useState(null);
@@ -25,7 +25,9 @@ const Questions = (props) => {
   }, []);
 
 
-
+  const handleClick = () =>{
+    
+  }
   // questions arr to be changed with passed arr from back-end
 
   if(loading || CQ < 0){
@@ -100,7 +102,7 @@ const Questions = (props) => {
   }
   console.log(interview)
     return(
-      <Graph></Graph>
+      <Graph handleClick={handleClick}></Graph>
     )
   
 };
