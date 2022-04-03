@@ -37,8 +37,7 @@ app.add_middleware(
 
 @app.post('/get-score/')
 async def get_score(ans_req: AnswerRequest):
-    # answers = ans_req.interview_set
-    d_answers = db.get_interview(ans_req.uuid)['interview_set']
+    d_answers = db.get_interview_uuid(ans_req.uuid)['interview_set']
     for i, q in enumerate(ans_req.interview_set):
         vu = model.infer_vector(q['answer'].split())
         vq = model.infer_vector(d_answers[i]['answer'].split())
@@ -46,11 +45,11 @@ async def get_score(ans_req: AnswerRequest):
         score = 0 if score < 0 else score
         q['score'] = score
     ans_req.end = datetime.now().strftime("%m/%d/%Y, %H:%M:%S")
-    db.update_interview(ans_req.uuid, dict(ans_req))
+    db.add_user_answers(dict(ans_req))
     return JSONResponse(status_code=status.HTTP_200_OK, content=dict(ans_req))
 
 
-@app.get('/get-interview/{user_token}')
+@app.get('/get-interview-user/{user_token}')
 async def get_interview_user_token(user_token):
     interview = db.get_interview_user_token(user_token)
     return JSONResponse(status_code=status.HTTP_200_OK, content=interview)
@@ -59,6 +58,7 @@ async def get_interview_user_token(user_token):
 @app.get('/get-interview/{uuid}')
 async def get_interview_uuid(uuid):
     interview = db.get_interview_uuid(uuid)
+    print(interview)
     return JSONResponse(status_code=status.HTTP_200_OK, content=interview)
 
 
