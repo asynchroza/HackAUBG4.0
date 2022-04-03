@@ -8,7 +8,8 @@
 
 .rotate-logo{
     position: relative;
-    top: 5rem;
+    top: 7.5rem;
+    padding-left: 1rem;
     margin-top: 2rem;
     width: 75%;
 }
@@ -50,8 +51,8 @@
     background-color: white;
     width: 80vw;
     height: 60vh;
-    margin-left: 25%;
-    margin-top: 7.5%;
+    margin-left: 10%;
+    margin-top: 7%;
     border-radius: 25%;
     display: flex;
     padding-left: 2rem;
@@ -79,6 +80,7 @@
 
 .btn-generate{
     margin-top: 1.5rem;
+    width: 10vw;
 }
 
 @media only screen and (max-width: 1750px){
@@ -146,7 +148,7 @@
     text-align: center;
     background-color: white;
     margin-top: 10rem;
-    height: 60vh;
+    height: 50vh;
     width: 40%;
     border-radius: 25%;
     display: flex;

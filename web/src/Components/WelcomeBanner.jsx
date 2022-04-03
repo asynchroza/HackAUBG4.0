@@ -10,7 +10,7 @@ const WelcomeBanner = () => {
         <div className="white-box-welcome">
           <img src={RotateLogo} className="rotate-logo" alt="" />
           <div className="">
-            <p>Mock interview platform powered by state of art AI <br/> Dedicated in helping you peek top performance during interviews<br/>Made by people who are taking interviews weekly for the ones who are afraid of weekly interviews</p> 
+            <p><strong>Mock it till you make it!</strong> <br/> AI-based platform dedicated to helping people reach peek performance during their interviews<br/></p> 
           </div>
           <Button
             style={styles.customButton}
