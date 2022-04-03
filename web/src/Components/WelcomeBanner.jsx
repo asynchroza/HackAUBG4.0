@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "react-bootstrap";
 import styles from "./Styles";
-import RotateLogo from "../static/blackLogo.png";
+import RotateLogo from "../Static/MOKKAI.png";
 
 const WelcomeBanner = () => {
   return (
@@ -9,6 +9,9 @@ const WelcomeBanner = () => {
       <div className="banner-box">
         <div className="white-box-welcome">
           <img src={RotateLogo} className="rotate-logo" alt="" />
+          <div className="">
+            <p>Mock interview platform powered by state of art AI <br/> Dedicated in helping you peek top performance during interviews<br/>Made by people who are taking interviews weekly for the ones who are afraid of weekly interviews</p> 
+          </div>
           <Button
             style={styles.customButton}
             className="proceed-button"
