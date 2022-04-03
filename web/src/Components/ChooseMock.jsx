@@ -34,8 +34,8 @@ const ChooseMock = (props) => {
       data:{...formState, user_token: getLocal.getItem("user")}
     })
     .then((res)=>{
-      window.location.href = '/mockinterview';
       getLocal.setItem("uuid",res.data.uuid)
+      window.location.href = '/mockinterview';
       console.log(res)
     })
     .catch((err)=>{
