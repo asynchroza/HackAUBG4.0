@@ -46,6 +46,21 @@
     align-items: center;
 }
 
+.link-or-choose-bigger{
+    background-color: white;
+    width: 80vw;
+    height: 60vh;
+    margin-left: 25%;
+    margin-top: 7.5%;
+    border-radius: 25%;
+    display: flex;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .link-or-choose-graph{
     background-color: white;
     width: 65vw;

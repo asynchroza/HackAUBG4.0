@@ -48,7 +48,7 @@ const AnswerView = () => {
     return (
       <div className="container-for-all">
         <Navigation></Navigation>
-        <div className="link-or-choose">
+        <div className="link-or-choose-bigger">
           <div className={loading == true? "hidden-class":""}>
           <p className="questions-text-box">{interview['interview_set'][CQ]['question']}</p>
           <FormGroup>
