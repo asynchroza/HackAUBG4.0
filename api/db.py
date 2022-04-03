@@ -42,7 +42,7 @@ def add_user_answers(interview):
 
 
 def get_user_answers_token(user_token):
-    return db['user_answers'].find_one({"u_token": user_token}, {'_id': 0})
+    return db['user_answers'].find({"u_token": user_token}, {'_id': 0})
 
 
 def get_user_answers_uuid(uuid):

@@ -34,19 +34,41 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+@app.get('/get-interview-stats/{user_token}')
+async def get_interview_stats_user(user_token):
+    all_interviews = db.get_user_answers_token(user_token)
+    response = {'interviews': []}
+    for interview in all_interviews:
+        score = interview['correct_answers'] / len(interview['interview_set'])
+        response['interviews'].append({'interview': interview['uuid'], 'score': '%.2f'%score})
+    return JSONResponse(status_code=status.HTTP_200_OK, content=response)
+
 
 @app.post('/get-score/')
 async def get_score(ans_req: AnswerRequest):
     d_answers = db.get_interview_uuid(ans_req.uuid)['interview_set']
+    average_score = 0
+    num_correct = 0
+    num_incorrect = 0
     for i, q in enumerate(ans_req.interview_set):
         vu = model.infer_vector(q['answer'].split())
         vq = model.infer_vector(d_answers[i]['answer'].split())
         score = floor((1 - spatial.distance.cosine(vq, vu))*100)
         score = 0 if score < 0 else score
         q['score'] = score
+        average_score += score
+        if (score < 70):
+            num_incorrect += 1
+        else:
+            num_correct += 1
+    average_score /= len(ans_req.interview_set)
+    response = dict(ans_req)
+    response['average_score'] = average_score
+    response['correct_answers'] = num_correct
+    response['incorrect_answers'] = num_incorrect
     ans_req.end = datetime.now().strftime("%m/%d/%Y, %H:%M:%S")
-    db.add_user_answers(dict(ans_req))
-    return JSONResponse(status_code=status.HTTP_200_OK, content=dict(ans_req))
+    db.add_user_answers(dict(response))
+    return JSONResponse(status_code=status.HTTP_200_OK, content=response)
 
 
 @app.get('/get-interview-user/{user_token}')
