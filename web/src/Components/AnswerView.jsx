@@ -3,7 +3,7 @@ import Navigation from "./Navbar";
 import { FormGroup, FormControl, Button } from "react-bootstrap";
 import styles from "./Styles";
 import { useState, useEffect } from "react";
-import Graph from './Graph';
+import Stats from './Stats';
 const axios = require("axios").default;
 
 
@@ -13,6 +13,8 @@ const AnswerView = () => {
   const [userInterview, setUserInterview] = useState(null);
   const [interview, setInterview] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [loadingF, setLoadingF] = useState(false);
+  const [iData, setiData] = useState(null);
 
   useEffect(()=>{
     axios.get(`http://127.0.0.1:6969/get-user-answers/${localStorage.getItem("uuid")}`).then(res=>{
@@ -42,7 +44,7 @@ const AnswerView = () => {
       </div>
     </div>);
   }
-  else if(interview){
+  else if(interview && !iData){
     console.log(interview);
     console.log(userInterview)
     return (
@@ -62,6 +64,15 @@ const AnswerView = () => {
               if (CQ+2> interview['interview_set'].length) {
                   let q = interview['interview_set'][CQ];
                   console.log()
+                //   axios.get(`http://127.0.0.1:6969/get-interview-stats/${localStorage.getItem("user")}`)
+                //   .then(res=>{
+                //       setiData(res.data);
+                //       setLoadingF(true);
+                //   })
+                }
+                else if(CQ+2==interview['interview_set'].length){
+                let q = interview['interview_set'][CQ];
+                setCQ(CQ+1);
                 }
                else {
                 let q = interview['interview_set'][CQ];
@@ -76,13 +87,16 @@ const AnswerView = () => {
       </div>
       );
   }
-  console.log(interview)
+  else if(loadingF){
     return(
-        <div>
-            Bla
-        </div>
+        <Stats data={iData}></Stats>
     )
-  
+    }
+    else{
+        return(
+            <div>Test</div>
+        )
+    }
 };
 
 export default AnswerView;
