@@ -22,7 +22,7 @@ def find_questions():
 
 
 def get_interview_user_token(user_token):
-    return db['interviews'].find_one({"u_token": user_token}, {'_id': 0})
+    return db['user_answers'].find_one({"u_token": user_token}, {'_id': 0})
 
 
 def get_interview_uuid(uuid):
@@ -35,3 +35,15 @@ def update_interview(uuid, intv):
 
 def add_interview(interview):
     return db['interviews'].insert_one(interview)
+
+
+def add_user_answers(interview):
+    return db['user_answers'].insert_one(interview)
+
+
+def get_user_answers_token(user_token):
+    return db['user_answers'].find_one({"u_token": user_token}, {'_id': 0})
+
+
+def get_user_answers_uuid(uuid):
+    return db['user_answers'].find_one({"uuid": uuid}, {'_id': 0})
