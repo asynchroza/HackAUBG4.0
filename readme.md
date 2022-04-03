@@ -10,3 +10,5 @@
 <p>The package manager is NPM </p>
 <p>Start development server by typing <strong><em>npm start</em></strong>.</p>
 <p>Do not forget to run <strong><em>npm install</em></strong> to download the new dependencies.</p>
+<hr/>
+
