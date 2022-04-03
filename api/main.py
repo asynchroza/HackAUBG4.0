@@ -34,13 +34,15 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
 @app.get('/get-interview-stats/{user_token}')
 async def get_interview_stats_user(user_token):
     all_interviews = db.get_user_answers_token(user_token)
     response = {'interviews': []}
     for interview in all_interviews:
         score = interview['correct_answers'] / len(interview['interview_set'])
-        response['interviews'].append({'interview': interview['uuid'], 'score': '%.2f'%score})
+        response['interviews'].append(
+            {'interview': interview['uuid'], 'score': '%.2f' % score})
     return JSONResponse(status_code=status.HTTP_200_OK, content=response)
 
 

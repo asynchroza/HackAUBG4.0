@@ -14,6 +14,8 @@ const Questions = () => {
   const [loading, setLoading] = useState(true);
   const [answer, setAnswer] = useState("");
   const [answers, setAnswers] = useState([]);
+  const [iData, setiData] = useState(null);
+  const [loadingF, setLoadingF] = useState(false);
 
   useEffect(()=>{
     axios.get(`http://127.0.0.1:6969/get-interview/${localStorage.getItem("uuid")}`).then(res=>{
@@ -26,7 +28,7 @@ const Questions = () => {
 
 
   const handleClick = () =>{
-    
+
   }
   // questions arr to be changed with passed arr from back-end
 
@@ -75,6 +77,12 @@ const Questions = () => {
                     console.log(err);
                     console.log(err.response.data)
                   })
+
+                  axios.get(`http://127.0.0.1:6969/get-interview-stats/${localStorage.getItem("user")}`)
+                  .then(res=>{
+                      setiData(res.data);
+                      setLoadingF(true);
+                  })
                 }
               
               else if (CQ+2== interview['interview_set'].length) {
@@ -100,10 +108,15 @@ const Questions = () => {
       </div>
       );
   }
-  console.log(interview)
+  else if(loadingF){
     return(
-      <Graph handleClick={handleClick}></Graph>
+      <Graph handleClick={handleClick} data={iData}></Graph>
     )
+  }
+
+        return(
+            <div>Test</div>
+        )
   
 };
 
