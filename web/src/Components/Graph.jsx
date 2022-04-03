@@ -9,7 +9,6 @@ const Graph = (props) => {
         <div className="container-for-all">
             <Navigation/>
             <div className='link-or-choose-graph'>
-            
             <ul>
                 {props.data.interviews.map((inte, i)=>
                     <li key={i}>Interview {i+1}: {inte.score}</li>
