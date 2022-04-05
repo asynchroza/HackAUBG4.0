@@ -11,8 +11,8 @@
 <p>The package manager is NPM </p>
 <p>Start development server by typing <strong><em>npm start</em></strong>.</p>
 <p>Do not forget to run <strong><em>npm install</em></strong> to download the new dependencies.</p>
-<p>Start back-end server by first installing the requirements pip install -r requirements.txt</p>
-<p>Then running main.py</p>
+<p>In order to start the back-end server you have to first install the requirements pip install -r requirements.txt</p>
+<p>Then run main.py</p>
 <hr/>
 <a href="https://ibb.co/zrnK0tW"><img src="https://i.ibb.co/ZVLykbR/mokkai.png" alt="mokkai" border="0"></a>
 
