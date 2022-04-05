@@ -2,9 +2,9 @@
 <h3><a href="https://www.linkedin.com/feed/update/urn:li:activity:6916688227038863360/">LinkedIn post</a></h3>
 <h3>Tech Stack:</h3>
 <ul>
-<li>React</li>
-<li>Python</li>
+<li>React with Axios</li>
 <li>FastAPI</li>
+ <li>Vec2Lib</li>
 </ul>
 <hr/>
 <h3>Important</h3>
